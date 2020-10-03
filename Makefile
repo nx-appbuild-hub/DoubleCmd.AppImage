@@ -15,7 +15,7 @@ all: clean
 	rm -rf $(PWD)/build
 	mkdir -p $(PWD)/build
 
-	wget --no-check-certificate --output-document=$(PWD)/build/build.rpm https://download.opensuse.org/repositories/home:/Alexx2000/CentOS_8/x86_64/doublecmd-qt5-0.9.9-22.3.x86_64.rpm
+	wget --no-check-certificate --output-document=$(PWD)/build/build.rpm https://download-ib01.fedoraproject.org/pub/fedora/linux/updates/32/Everything/x86_64/Packages/d/doublecmd-qt-0.9.9-1.fc32.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
 	mkdir -p $(PWD)/AppDir/application
