@@ -18,6 +18,11 @@ all: clean
 	wget --no-check-certificate --output-document=$(PWD)/build/build.rpm https://download-ib01.fedoraproject.org/pub/fedora/linux/updates/32/Everything/x86_64/Packages/d/doublecmd-qt-0.9.9-1.fc32.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
+	wget --no-check-certificate --output-document=$(PWD)/build/build.rpm https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64/os/Packages/d/doublecmd-common-0.9.7-1.fc32.x86_64.rpm
+	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
+
+
+
 	mkdir -p $(PWD)/AppDir/application
 
 	cp -r $(PWD)/build/usr/lib64/doublecmd/* $(PWD)/AppDir/application
@@ -26,10 +31,10 @@ all: clean
 	rm -f $(PWD)/AppDir/application/pixmaps
 	rm -f $(PWD)/AppDir/application/doc
 
-	cp -r $(PWD)/build/usr/share/doublecmd/highlighters $(PWD)/AppDir/application/
-	cp -r $(PWD)/build/usr/share/doublecmd/language $(PWD)/AppDir/application/
-	cp -r $(PWD)/build/usr/share/doublecmd/pixmaps $(PWD)/AppDir/application/
-	cp -r $(PWD)/build/usr/share/doublecmd/doc $(PWD)/AppDir/application/
+	cp -r --force $(PWD)/build/usr/share/doublecmd/highlighters $(PWD)/AppDir/application/
+	cp -r --force $(PWD)/build/usr/share/doublecmd/language $(PWD)/AppDir/application/
+	cp -r --force $(PWD)/build/usr/share/doublecmd/pixmaps $(PWD)/AppDir/application/
+	cp -r --force $(PWD)/build/usr/share/doublecmd/doc $(PWD)/AppDir/application/
 
 	wget --no-check-certificate --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/qt5-qtbase-5.12.5-4.el8.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
@@ -61,8 +66,8 @@ all: clean
 
 
 	mkdir -p $(PWD)/AppDir/lib
-	cp -r $(PWD)/build/usr/lib64/* $(PWD)/AppDir/lib
-	cp -r $(PWD)/AppDir/lib/qt5/plugins/platforms $(PWD)/AppDir/application/
+	cp -r --force $(PWD)/build/usr/lib64/* $(PWD)/AppDir/lib
+	cp -r --force $(PWD)/AppDir/lib/qt5/plugins/platforms $(PWD)/AppDir/application/
 	rm -rf $(PWD)/build/*
 
 	export ARCH=x86_64 && $(PWD)/bin/appimagetool-x86_64.AppImage  $(PWD)/AppDir $(PWD)/DoubleCmd.AppImage

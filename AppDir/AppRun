@@ -26,4 +26,4 @@ export LD_LIBRARY_PATH
 QT_DEBUG_PLUGINS=1
 export QT_DEBUG_PLUGINS
 
-${APPDIR}/application/doublecmd $@
+${APPDIR}/application/doublecmd-qt $@
