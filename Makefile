@@ -12,7 +12,6 @@
 PWD:=$(shell pwd)
 
 all: clean
-
 	mkdir -p $(PWD)/build
 	apprepo --destination=$(PWD)/build appdir doublecmd doublecmd-qt doublecmd-plugins doublecmd-help-uk doublecmd-help-ru doublecmd-help-en doublecmd-common
 	echo "exec \$${APPDIR}/lib64/doublecmd/doublecmd \"\$${@}\"" >> $(PWD)/build/Doublecmd.AppDir/AppRun
